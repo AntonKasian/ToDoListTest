@@ -8,14 +8,57 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var showAlert = false
+    @State var taskTitle = ""
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationView {
+            VStack {
+                List() {
+                    Text("Test")
+                    Text("Test")
+                    Text("Test")
+                    Text("Test")
+                }
+            }
+            .navigationTitle("To Do List")
+            .navigationBarTitleDisplayMode(.inline)
+            
+            .navigationBarItems(trailing: Button(action: {
+                showAlert.toggle()
+            }, label: {
+                Image(systemName: "plus")
+            }))
+            .alert("Key", isPresented: $showAlert) {
+                VStack {
+                    Text("Write new task")
+                    TextField("Task...", text: $taskTitle)
+                    
+                    Button {
+                        addItem()
+                    } label: {
+                        Text("Ok")
+                    }
+                    
+                    Button(role: .cancel) {
+
+                    } label: {
+                        Text("Cancel")
+                    }
+                    
+                }
+            }
         }
-        .padding()
+    }
+    
+    func addItem() {
+        if taskTitle == "" {
+            print("Empy task")
+        } else {
+            print(taskTitle)
+        }
+        taskTitle = ""
     }
 }
 
