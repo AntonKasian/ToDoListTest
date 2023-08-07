@@ -7,13 +7,6 @@
 
 import Foundation
 
-struct Task: Identifiable {
-    let id = UUID()
-    var text: String
-    var isDone = false
-}
-
-
 class TasksViewModel: ObservableObject {
     @Published var showAlert = false
     @Published var taskTitle = ""
