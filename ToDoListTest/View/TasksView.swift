@@ -14,6 +14,8 @@ struct TasksView: View {
     var body: some View {
         NavigationView {
             VStack {
+                Text(viewModel.errorMessage)
+                    .foregroundColor(.red)
                 List {
                     ForEach(viewModel.tasks) { task in
                         HStack {
