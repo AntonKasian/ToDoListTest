@@ -27,5 +27,9 @@ class TasksViewModel: ObservableObject {
                tasks[index].isDone.toggle()
            }
        }
+    
+    func delete(at offsets: IndexSet) {
+        tasks.remove(atOffsets: offsets)
+    }
 
 }

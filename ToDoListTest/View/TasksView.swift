@@ -14,16 +14,19 @@ struct TasksView: View {
     var body: some View {
         NavigationView {
             VStack {
-                List(viewModel.tasks) { task in
-                    HStack {
-                        Button {
-                            viewModel.toggleDone(for: task)
-                        } label: {
-                            Text(task.text)
+                List {
+                    ForEach(viewModel.tasks) { task in
+                        HStack {
+                            Button {
+                                viewModel.toggleDone(for: task)
+                            } label: {
+                                Text(task.text)
+                            }
+                            Spacer()
+                            Image(systemName: task.isDone ? "checkmark.circle.fill" : "circle")
                         }
-                        Spacer()
-                        Image(systemName: task.isDone ? "checkmark.circle.fill" : "circle")
-                    }
+                        
+                    } .onDelete(perform: viewModel.delete)
                 }
             }
             .navigationTitle("To Do List")
@@ -54,7 +57,6 @@ struct TasksView: View {
             }
         }
     }
-    
 }
 
 struct ContentView_Previews: PreviewProvider {
